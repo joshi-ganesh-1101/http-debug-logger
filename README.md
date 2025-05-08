@@ -72,6 +72,42 @@ app.listen(3000, () => {
 
 ---
 
+## Preset Options
+
+To simplify setup, you can use one of the predefined logging presets by passing the `preset` option:
+
+| Preset       | Description                                                               |
+|--------------|---------------------------------------------------------------------------|
+| `minimal`    | Logs only the HTTP method, URL, and status code.                          |
+| `verbose`    | Logs method, URL, status code, response time, headers, and body.          |
+| `production` | Outputs logs in JSON format (structured logging) with timestamp included. |
+
+### Example Usage
+
+#### Minimal Logging
+
+```ts
+import {createServerLogger} from 'http-debug-logger';
+
+const logger = createServerLogger({preset: 'minimal'});
+```
+
+#### Verbose Logging (for development)
+
+```ts
+const logger = createServerLogger({preset: 'verbose'});
+```
+
+#### Production Logging (structured JSON format)
+
+```ts
+const logger = createServerLogger({preset: 'production'});
+```
+
+> **Note**: You can still override individual options (`logHeaders`, `logBody`, `timestamp`, etc.) even when using a
+> preset.
+---
+
 ## Configuration Options
 
 | Option       | Type                               | Default       | Description                                                                                                                                   |
