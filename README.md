@@ -63,7 +63,7 @@ import {expressLogger} from 'http-debug-logger';
 
 const app = express();
 
-app.use(expressLogger());
+app.use(expressLogger()); // Use expressLogger middleware
 
 app.get('/', (req, res) => {
     res.send('Hello from Express!');
@@ -111,6 +111,7 @@ const logger = createServerLogger({preset: 'production'});
 
 > **Note**: You can still override individual options (`logHeaders`, `logBody`, `timestamp`, etc.) even when using a
 > preset.
+
 ---
 
 ## Configuration Options
@@ -125,7 +126,7 @@ const logger = createServerLogger({preset: 'production'});
 | `logBody`       | `boolean`                          | `false`       | Log request body (defaults to `false`).                                                                                                       |
 | `format`        | `string` or `(req, res) => string` | `"default"`   | Custom log message format. If a string is provided, it will be used as the format; if a function is provided, it will format the log message. |
 | `logFilePath`   | `string`                           | `""`          | [New] File path to write logs to.                                                                                                             |
-| `logFileAppend` | `string` or `(req, res) => string` | `"default"`   | [New] Append to log file (true) or overwrite (false)                                                                                          |
+| `logFileAppend` | `boolean`                          | `"false"`     | [New] Append to log file (true) or overwrite (false).                                                                                         |
 
 ---
 
