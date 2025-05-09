@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
 
 export interface LoggerOptions {
-  preset?: 'minimal' | 'verbose' | 'production';
+  preset?: 'minimal' | 'verbose' | 'production' | 'json';
   logHeaders?: boolean;
   logBody?: boolean;
   prefix?: string;

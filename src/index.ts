@@ -1,6 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import kleur from 'kleur';
 import { LoggerOptions } from './types/loggerOptions';
+import { JsonLogEntry } from './types/jsonLogEntry';
 
 export function createServerLogger(options: LoggerOptions = {}) {
   const {
@@ -24,6 +25,19 @@ export function createServerLogger(options: LoggerOptions = {}) {
       const method = req.method || '';
       const url = req.url || '';
       const statusCode = res.statusCode;
+
+      const entry: JsonLogEntry = {
+        timestamp: timestamp ? new Date().toISOString() : undefined!,
+        method: method!,
+        url: url!,
+        statusCode,
+        durationMs: parseFloat(durationMs),
+      };
+
+      if (format === 'json') {
+        console.log(JSON.stringify(entry));
+        return;
+      }
 
       let message = format
         ? typeof format === 'function'
@@ -73,6 +87,17 @@ function applyPresets(options: LoggerOptions) {
   }
   if (preset === 'production') {
     return { ...options, json: true, color: false, timestamp: true };
+  }
+  if (preset === 'json') {
+    return {
+      ...options,
+      logHeaders: true,
+      logBody: false,
+      colorize: false,
+      prefix: '',
+      timestamp: true,
+      format: 'json',
+    };
   }
   return options;
 }
