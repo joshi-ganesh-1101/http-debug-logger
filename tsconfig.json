@@ -9,7 +9,7 @@
       "skipLibCheck": true,
       "declarationMap": true,
       "declarationDir": "dist/types",
-      "emitDeclarationOnly": true
+      "emitDeclarationOnly": false
 },
   "include": ["src"],
   "exclude": ["node_modules"]

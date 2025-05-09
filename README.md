@@ -1,5 +1,7 @@
 # http-debug-logger
 
+[![GitHub](https://img.shields.io/badge/source-GitHub-black?logo=github)](https://github.com/joshi-ganesh-1101/http-debug-logger)
+
 A beginner-friendly HTTP request logger for Node.js.  
 Supports both native `http` servers and Express middleware.  
 Logs method, URL, status code, and response time.  

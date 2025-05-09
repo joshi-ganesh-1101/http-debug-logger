@@ -13,6 +13,14 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:joshi-ganesh-1101/http-debug-logger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joshi-ganesh-1101/http-debug-logger/issues"
+  },
+  "homepage": "https://github.com/joshi-ganesh-1101/http-debug-logger#readme",
   "keywords": [
     "http",
     "logger",
