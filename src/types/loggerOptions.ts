@@ -8,5 +8,7 @@ export interface LoggerOptions {
   color?: boolean;
   timestamp?: boolean;
   skip?: (req: IncomingMessage, res: ServerResponse) => boolean;
-  format?: string | ((req: IncomingMessage, res: ServerResponse) => string);
+  format?: 'json' | ((req: IncomingMessage, res: ServerResponse) => string);
+  logFilePath?: string;
+  logFileAppend?: boolean;
 }
