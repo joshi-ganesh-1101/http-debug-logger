@@ -1,7 +1,7 @@
 {
   "name": "http-debug-logger",
   "version": "0.4.1",
-  "description": "A simple HTTP request debug logger for Node.js",
+  "description": "A customizable HTTP request logger for Node.js and Express, ideal for debugging and monitoring backend requests with support for JSON logging, presets, and file output.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -28,7 +28,7 @@
     "node",
     "express"
   ],
-  "author": "Your Name",
+  "author": "Ganesh Joshi",
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",
