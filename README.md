@@ -83,6 +83,7 @@ To simplify setup, you can use one of the predefined logging presets by passing 
 | `minimal`    | Logs only the HTTP method, URL, and status code.                          |
 | `verbose`    | Logs method, URL, status code, response time, headers, and body.          |
 | `production` | Outputs logs in JSON format (structured logging) with timestamp included. |
+| `json`       | JSON-structured output with all fields                                    |
 
 ### Example Usage
 
