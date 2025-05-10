@@ -3,23 +3,23 @@ import kleur from 'kleur';
 import { JsonLogEntry } from '../types/jsonLogEntry';
 import { LoggerOptions } from '../types/loggerOptions';
 
-export function attachLogger(options: LoggerOptions, outputLog: (line: string) => void) {
-  return function (req: IncomingMessage, res: ServerResponse) {
+export function attachLogger(options: LoggerOptions, outputLog: (line: string, json?: string) => void) {
+  return function(req: IncomingMessage, res: ServerResponse) {
     const start = process.hrtime();
 
     res.on('finish', () => {
       if (options.skip?.(req, res)) return;
 
       const durationMs = getDurationMs(start);
-      const entry = buildJsonEntry(req, res, durationMs, options);
+      const entry = JSON.stringify(buildJsonEntry(req, res, durationMs, options));
 
       if (options.format === 'json') {
-        outputLog(JSON.stringify(entry));
+        outputLog(entry);
         return;
       }
 
       const message = buildMessage(req, res, durationMs, options);
-      outputLog(message);
+      outputLog(message, entry);
 
       if (options.logHeaders) {
         console.log(kleur.gray('Headers:'), req.headers);
@@ -40,7 +40,7 @@ function buildJsonEntry(
   req: IncomingMessage,
   res: ServerResponse,
   durationMs: number,
-  options: LoggerOptions
+  options: LoggerOptions,
 ): JsonLogEntry {
   const entry: JsonLogEntry = {
     timestamp: options.timestamp ? new Date().toISOString() : undefined!,
@@ -50,7 +50,7 @@ function buildJsonEntry(
     durationMs,
   };
   if (options.logHeaders) entry.headers = req.headers as any;
-  if (options.logBody) entry.body = (req as any).body;
+  if (options.logBody) entry.body = (req as any).body || 'Body does not exists';
   return entry;
 }
 
@@ -58,7 +58,7 @@ function buildMessage(
   req: IncomingMessage,
   res: ServerResponse,
   durationMs: number,
-  options: LoggerOptions
+  options: LoggerOptions,
 ): string {
   const method = req.method || '';
   const url = req.url || '';
