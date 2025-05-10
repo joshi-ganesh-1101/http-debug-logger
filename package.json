@@ -26,7 +26,9 @@
     "logger",
     "debug",
     "node",
-    "express"
+    "express",
+    "http debug logger",
+    "debug logger"
   ],
   "author": "Ganesh Joshi",
   "license": "MIT",
